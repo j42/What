@@ -1,6 +1,10 @@
 ;(function() {
 
 	/*
+		
+		.sidebar {
+			min-width: 248px; // harmless, doesn't break most themes
+		}
 	
 		#scw-buttons {
 			margin: 0 0 18px 0;
@@ -55,7 +59,7 @@
 	
 	if (window.asdfzxvmasdfjkl !== true) {
 	
-		var style	= '<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"><style>#scw-buttons{-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:moz-none;-ms-user-select:none;user-select:none;margin:0 0 18px}#sc-widget{-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:moz-none;-ms-user-select:none;user-select:none}.scw-button{cursor:pointer;display:inline-block;white-space:nowrap;background:rgba(0,0,0,0.85);border:4px solid rgba(255,255,255,0.85);color:rgba(255,255,255,0.85);font-size:32px;transition:.25s all;border-radius:72px;vertical-align:middle;width:36px;height:36px;position:relative;top:6px;margin:0 8px;padding:8px}.scw-button.large{font-size:48px;width:42px;height:42px;padding:14px}.scw-button.large > span{transition:none!important}.scw-button.large > span.icon-play{position:relative;top:-2px;left:4px}.scw-button.large > span.icon-pause{position:relative;top:-1px;left:1px;font-size:44px}.scw-button:not(.large) > span{position:relative;top:2px}.scw-button:hover{color:rgba(255,255,255,1);border:4px solid rgba(255,255,255,1);background:rgba(0,0,0,0.95)}</style>',
+		var style	= '<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"><style>.sidebar{min-width:248px;}#scw-buttons{-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:moz-none;-ms-user-select:none;user-select:none;margin:0 0 18px}#sc-widget{-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:moz-none;-ms-user-select:none;user-select:none}.scw-button{cursor:pointer;display:inline-block;white-space:nowrap;background:rgba(0,0,0,0.85);border:4px solid rgba(255,255,255,0.85);color:rgba(255,255,255,0.85);font-size:32px;transition:.25s all;border-radius:72px;vertical-align:middle;width:36px;height:36px;position:relative;top:6px;margin:0 8px;padding:8px}.scw-button.large{font-size:48px;width:42px;height:42px;padding:14px}.scw-button.large > span{transition:none!important}.scw-button.large > span.icon-play{position:relative;top:-2px;left:4px}.scw-button.large > span.icon-pause{position:relative;top:-1px;left:1px;font-size:44px}.scw-button:not(.large) > span{position:relative;top:2px}.scw-button:hover{color:rgba(255,255,255,1);border:4px solid rgba(255,255,255,1);background:rgba(0,0,0,0.95)}</style>',
 			artist	= $('.header h2').text(),
 			album	= $('.header h2 span').text(),
 			query;
