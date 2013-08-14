@@ -219,7 +219,7 @@
 		        				barRight	= container.offset().left + width,
 		        				
 		        				volume		= 100,
-		        				percent		= 97;
+		        				percent		= 96;
 		        			
 		        			$(window).bind('mouseup', function() { $(window).unbind('mousemove'); });
 		        			
@@ -244,8 +244,8 @@
 			        			barLeft		= container.offset().left,
 			        			barRight	= container.offset().left + width,
 			        			
-			        			volume		= 50,
-			        			percent		= 50;
+			        			volume		= 100,
+			        			percent		= 96;
 			        			
 			        		if (p >= barLeft && p <= barRight) {
 			        			volume = ((p - barLeft)/width)*100;
