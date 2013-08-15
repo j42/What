@@ -167,8 +167,10 @@
 		        	
 		        	// Loading Declarations
 		        	
-		        	var widget	= SC.Widget('sc-widget'),
-		        		current	= 0;
+		        	var widget		= SC.Widget('sc-widget'),
+		        		current		= 0,
+		        		volume		= 100,
+		        		percentage	= 96;
 		        	
 		        	
 		        	
@@ -216,10 +218,7 @@
 		        				bar			= $(handle).parents('#scw-volume-bar-active'),
 		        				width		= container.outerWidth(),
 		        				barLeft		= container.offset().left,
-		        				barRight	= container.offset().left + width,
-		        				
-		        				volume		= 100,
-		        				percent		= 96;
+		        				barRight	= container.offset().left + width;
 		        			
 		        			$(window).bind('mouseup', function() { $(window).unbind('mousemove'); });
 		        			
@@ -242,10 +241,7 @@
 			        			bar			= $(this).children('#scw-volume-bar-active'),
 			        			width		= container.outerWidth(),
 			        			barLeft		= container.offset().left,
-			        			barRight	= container.offset().left + width,
-			        			
-			        			volume		= 100,
-			        			percent		= 96;
+			        			barRight	= container.offset().left + width;
 			        			
 			        		if (p >= barLeft && p <= barRight) {
 			        			volume = ((p - barLeft)/width)*100;
