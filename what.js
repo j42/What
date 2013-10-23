@@ -167,17 +167,68 @@
 		        	
 		        	// Loading Declarations
 		        	
-		        	var widget		= SC.Widget('sc-widget'),
-		        		current		= 0,
+		        	window.widget = SC.Widget('sc-widget');
+		        	
+		        	var current		= 0,
 		        		volume		= 100,
 		        		percentage	= 96;
+		        		
+		        		setVolume	= function(volume) {
+		        			widget.setVolume(volume);
+		        		};
 		        	
 		        	
+		 			// Volume Bindings
+		        			        	
+		        	$('#scw-volume-bar-handle').mousedown(function(e) {
+		        		
+		        		var container	= $(this).parents('#scw-volume-bar'),
+		        			bar			= $(this).parents('#scw-volume-bar-active'),
+		        			width		= container.outerWidth(),
+		        			barLeft		= container.offset().left,
+		        			barRight	= container.offset().left + width;
+		        		
+		        		$(window).bind('mouseup', function() { $(window).unbind('mousemove'); });
+		        		
+		        		$(window).mousemove(function(e) {
+		        			var p = e.pageX;
+		        			if (p >= barLeft && p <= barRight) {
+		        				volume = ((p - barLeft)/width)*100;
+		        				percent = (volume < 4) ? 4 : (volume > 96 ? 96 : volume);
+		        				bar.css('width', percent+'%');
+		        				widget.setVolume(volume);
+		        			}
+		        		});
+		        				        			
+		        	});
 		        	
-		        	/* Widget Ready */	
+		        	$('#scw-volume-bar').click(function(e) {
+		        		
+		        		var p 			= e.pageX,
+		        			container	= $(this),
+		        			bar			= $(this).children('#scw-volume-bar-active'),
+		        			width		= container.outerWidth(),
+		        			barLeft		= container.offset().left,
+		        			barRight	= container.offset().left + width;
+		        			
+		        		if (p >= barLeft && p <= barRight) {
+		        			volume = ((p - barLeft)/width)*100;
+		        			percent = (volume < 4) ? 4 : (volume > 96 ? 96 : volume);
+		        			bar.css('width', percent+'%');
+		        			widget.setVolume(volume);
+		        		}
+		        		
+		        	});
+
+		        	
+		        	/* Widget Ready */
 		        	
 		        	widget.bind(SC.Widget.Events.READY, function() {
-		
+		        			        		
+		        		// Set Volume
+		        		
+		        		widget.setVolume(volume);
+		        						
 		        		
 		        		// Autoplay
 		        		
@@ -185,8 +236,8 @@
 		        			++current, widget.load(tracks[current].uri);
 		        			if (typeof tracks[current] === undefined) --current;
 		        		});
-		        		
-		        		
+
+
 		        		// Bindings
 		        		
 		        		$('#scw-play').on('click', function() {
@@ -200,63 +251,29 @@
 		        		});
 		        		
 		        		$('#scw-next').on('click', function() { 
-		        			++current, widget.load(tracks[current].uri, { callback: function() { widget.play(), $('#scw-play').addClass('pause').find('span').removeClass('icon-play').addClass('icon-pause'); } });
+		        			++current, 
+		        			widget.load(tracks[current].uri, {
+		        				callback: function() {
+		        					widget.play(), $('#scw-play').addClass('pause').find('span').removeClass('icon-play').addClass('icon-pause');
+		        				} 
+		        			});
 		        			if (typeof tracks[current] === undefined) --current;
 		        		});
 		        		
 		        		$('#scw-prev').on('click', function() { 
-		        			--current, widget.load(tracks[current].uri, { callback: function() { widget.play(), $('#scw-play').addClass('pause').find('span').removeClass('icon-play').addClass('icon-pause'); } });
+		        			--current, 
+		        			widget.load(tracks[current].uri, { 
+		        				callback: function() { 
+		        					widget.play(), $('#scw-play').addClass('pause').find('span').removeClass('icon-play').addClass('icon-pause'); 
+		        				} 
+		        			});
 		        			if (typeof tracks[current] === undefined) ++current;
 		        		});
-		        		
-		        		// Volume
-		        		
-		        		$('#scw-volume-bar-handle').mousedown(function(e) {
-		        			
-		        			var handle 		= this,
-		        				container	= $(handle).parents('#scw-volume-bar'),
-		        				bar			= $(handle).parents('#scw-volume-bar-active'),
-		        				width		= container.outerWidth(),
-		        				barLeft		= container.offset().left,
-		        				barRight	= container.offset().left + width;
-		        			
-		        			$(window).bind('mouseup', function() { $(window).unbind('mousemove'); });
-		        			
-		        			$(window).mousemove(function(e) {
-		        				var p = e.pageX;
-		        				if (p >= barLeft && p <= barRight) {
-		        					volume = ((p - barLeft)/width)*100;
-		        					percent = (volume < 4) ? 4 : (volume > 96 ? 96 : volume);
-		        					bar.css('width', percent+'%');
-		        					widget.setVolume(volume);
-		        				}
-		        			});
-		        					        			
-		        		});
-		        		
-		        		$('#scw-volume-bar').click(function(e) {
-		        			
-		        			var p 			= e.pageX,
-			        			container	= $(this),
-			        			bar			= $(this).children('#scw-volume-bar-active'),
-			        			width		= container.outerWidth(),
-			        			barLeft		= container.offset().left,
-			        			barRight	= container.offset().left + width;
-			        			
-			        		if (p >= barLeft && p <= barRight) {
-			        			volume = ((p - barLeft)/width)*100;
-			        			percent = (volume < 4) ? 4 : (volume > 96 ? 96 : volume);
-			        			bar.css('width', percent+'%');
-			        			widget.setVolume(volume);
-			        		}
-		        			
-		        		});
-		        		
+		        				        		
 		        		//widget.play();
 		        		
-		        		
 		        	});
-		        	
+		        			        	
 		        });
 		        
 		    }
